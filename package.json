@@ -13,12 +13,9 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "repository": {
-    
-  },
+  "repository": {},
   "author": "Michael Campbell",
   "license": "MIT",
-  
   "dependencies": {
     "bcrypt": "^3.0.6",
     "express": "^4.17.0",
