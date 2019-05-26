@@ -19,10 +19,10 @@ const UserSchema = new Schema({
     required: true
   },
 
-  tasks: {
-    type: Array,
-    default: []
-  }
+  tasks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Task"
+  }]
 })
 
 UserSchema.pre("save", function(next) {

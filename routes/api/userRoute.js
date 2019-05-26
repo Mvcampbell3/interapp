@@ -10,7 +10,12 @@ router.get("/all", (req,res) => {
 
 router.get("/test", (req,res) => {
   if (req.user) {
-    res.json({user:true})
+    // res.json({user:true})
+    User.findById(req.user._id)
+      .select("-email -password")
+      .populate("tasks")
+      .then(result => res.json(result))
+      .catch(err => res.json(err))
   } else {
     res.json({user:false})
   }
