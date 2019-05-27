@@ -11,6 +11,7 @@ class App extends Component {
     email: "",
     password: "",
     time: "",
+    rerender: false,
   }
 
   componentDidMount() {
@@ -79,20 +80,15 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-  showMeTheCodeBro = e => {
-    e.preventDefault()
-    const timeInput = document.querySelector(".timeInput")
-    console.log(timeInput);
-    switch (e.target.name) {
-      case "down":
-        timeInput.stepDown();
-        break;
-      case "up":
-        timeInput.stepUp();
-        break;
-      default:
-        console.log("WTF BRO")
-    }
+  updateCompleted = e => {
+    e.preventDefault();
+    const isCompleted = e.target.value;
+    API.updateCompleted(e.target.dataset.task_id, isCompleted)
+      .then(result => {
+        console.log(result)
+        this.getUserAndTasks()
+      })
+      .catch(err => console.log(err));
   }
 
 
@@ -110,7 +106,7 @@ class App extends Component {
         /> : <button onClick={e => this.logoutUser(e)}>Logout</button>}
 
         {this.state.tasks.map(task => (
-          <Task key={task._id} name={task.name} detail={task.detail} />
+          <Task key={task._id} id={task._id} name={task.name} detail={task.detail} isCompleted={task.isCompleted} updateCompleted={this.updateCompleted} />
         ))}
 
         

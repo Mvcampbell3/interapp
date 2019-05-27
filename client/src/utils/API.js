@@ -20,6 +20,10 @@ export default {
 
   getUserAndTasks() {
     return Axios.get("/api/user/withtasks");
+  },
+
+  updateCompleted(id, isCompleted) {
+    return Axios.put(`/api/task/updatecompleted/${id}`, {isCompleted:isCompleted})
   }
 
 }

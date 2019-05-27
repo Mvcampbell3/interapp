@@ -71,4 +71,12 @@ router.delete("/deltask/:id", (req, res) => {
   }
 })
 
+router.put("/updatecompleted/:id", (req,res) => {
+  if (req.user) {
+    Task.findByIdAndUpdate(req.params.id, {$set: {isCompleted: req.body.isCompleted}})
+      .then(result => res.json(result))
+      .catch(err => res.json(err));
+  }
+})
+
 module.exports = router;
