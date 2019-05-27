@@ -7,3 +7,13 @@ body, html, h1, h2, h3, h4, h5, h6, p, ul, li {
   padding: 0;
 }
 
+.container{
+  width: 80%;
+  margin: 1em auto;
+}
+
+input[type=time]::-webkit-inner-spin-button,
+input[type=time]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
